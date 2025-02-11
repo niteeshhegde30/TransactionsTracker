@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- MyBatis settings -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- Type aliases (optional) -->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.example.model.User" alias="User"/>-->
+<!--    </typeAliases>-->
+
+    <!-- DataSource configuration -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/yourdb"/>
+                <property name="username" value="root"/>
+                <property name="password" value="password"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- Mapper locations -->
+    <mappers>
+        <mapper resource="com/example/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
