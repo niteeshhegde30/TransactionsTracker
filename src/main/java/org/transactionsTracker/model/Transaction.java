@@ -7,6 +7,9 @@ public class Transaction {
     private double amount;
     private Date date;
     private String comment;
+    
+    public Transaction() {
+    }
 
     public Transaction(double amount, Date date){
         this.amount = amount;
