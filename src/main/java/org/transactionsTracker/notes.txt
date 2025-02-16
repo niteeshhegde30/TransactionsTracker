@@ -1,0 +1,7 @@
+sql query for creating transaction table
+CREATE TABLE `transactions_db`.`transaction` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `amount` DOUBLE NOT NULL,
+  `comment` VARCHAR(256) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`id`));

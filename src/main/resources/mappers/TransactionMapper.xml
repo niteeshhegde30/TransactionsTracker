@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.transactionsTracker.mappers.TransactionMapper">
+
+    <select id="findById" parameterType="int" resultType="org.transactionsTracker.model.Transaction">
+        SELECT * FROM transaction
+        WHERE id = #{id}
+    </select>
+
+    <select id="getAllTransactions" parameterType="int" resultType="org.transactionsTracker.model.Transaction">
+        SELECT * FROM transaction
+    </select>
+
+    <select id="findTransactionForFilter" parameterType="org.transactionsTracker.model.TransactionsFilter"
+            resultType="org.transactionsTracker.model.Transaction">
+        SELECT * FROM transaction
+        <where>
+            <if test="comment != null and comment != ''">
+                AND comment = #{comment}
+            </if>
+            <if test="amount != null">
+                AND amount = #{amount}
+            </if>
+            <if test="startDate != null">
+                AND date >= #{startDate}
+            </if>
+            <if test="endDate != null">
+                AND date &lt;= CONCAT(#{endDate}, ' 23:59:59')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertTransactions" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO transaction (amount, comment, date)
+        VALUES
+        <foreach collection="list" item="transaction" separator=",">
+            (#{transaction.amount}, #{transaction.comment}, #{transaction.date})
+        </foreach>
+    </insert>
+
+
+    <!--    &lt;!&ndash; Select user by ID &ndash;&gt;-->
+    <!--    <select id="findById" parameterType="long" resultType="com.example.demo.model.User">-->
+    <!--        SELECT * FROM users WHERE id = #{id}-->
+    <!--    </select>-->
+
+    <!--    &lt;!&ndash; Select all users &ndash;&gt;-->
+    <!--    <select id="findAll" resultType="com.example.demo.model.User">-->
+    <!--        SELECT * FROM users-->
+    <!--    </select>-->
+
+    <!--    &lt;!&ndash; Insert user &ndash;&gt;-->
+    <!--    <insert id="insert" parameterType="com.example.demo.model.User" useGeneratedKeys="true" keyProperty="id">-->
+    <!--        INSERT INTO users (name, email) VALUES (#{name}, #{email})-->
+    <!--    </insert>-->
+
+    <!--    &lt;!&ndash; Update user &ndash;&gt;-->
+    <!--    <update id="update" parameterType="com.example.demo.model.User">-->
+    <!--        UPDATE users SET name=#{name}, email=#{email} WHERE id=#{id}-->
+    <!--    </update>-->
+
+    <!--    &lt;!&ndash; Delete user &ndash;&gt;-->
+    <!--    <delete id="delete" parameterType="long">-->
+    <!--        DELETE FROM users WHERE id=#{id}-->
+    <!--    </delete>-->
+
+</mapper>
