@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.transactionsTracker.model.Transaction;
 import org.transactionsTracker.model.TransactionsFilter;
+import org.transactionsTracker.repository.TransactionRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,12 @@ import java.util.List;
 @Component
 @Scope("prototype")
 public class TransactionServiceImpl implements TransactionService{
+
+    private final TransactionRepository transactionRepository;
+
+    public TransactionServiceImpl(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
 
     @RequestMapping("/")
     String home() {
@@ -36,7 +43,8 @@ public class TransactionServiceImpl implements TransactionService{
     @GetMapping("/readTransactions")
     public List<Transaction> readTransactions(TransactionsFilter filter) {
         Transaction transaction = new Transaction(20.0, new Date());
-        return List.of(transaction);
+        return transactionRepository.getAllTransactions();
+//        return List.of(transaction);
     }
 
     @Override
