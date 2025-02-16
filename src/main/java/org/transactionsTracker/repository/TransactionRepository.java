@@ -15,21 +15,12 @@ public class TransactionRepository {
         this.sqlSessionTemplate = sqlSessionTemplate;
     }
 
-    public List<Transaction> findTransactionById(int id){
-        return sqlSessionTemplate.selectList("org.transactionsTracker.mappers.TransactionMapper.findTransactionById", id);
-    }
-
-    public List<Transaction> getAllTransactions(){
-        return sqlSessionTemplate.selectList("org.transactionsTracker.mappers.TransactionMapper.getAllTransactions");
-    }
-
     public List<Transaction> findTransactionForFilter(TransactionsFilter filter){
         return sqlSessionTemplate.selectList("org.transactionsTracker.mappers.TransactionMapper.findTransactionForFilter", filter);
     }
 
     public List<Transaction> insertTransactions(List<Transaction> transactions){
         sqlSessionTemplate.insert("org.transactionsTracker.mappers.TransactionMapper.insertTransactions", transactions);
-//        sqlSessionTemplate.commit();
         return transactions;
     }
 }

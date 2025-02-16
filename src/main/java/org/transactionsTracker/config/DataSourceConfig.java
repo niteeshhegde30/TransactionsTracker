@@ -15,6 +15,7 @@ public class DataSourceConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
+        // TODO: these configs should be read from applicaton.properites - make it work
         return DataSourceBuilder.create()
                 .url("jdbc:mysql://localhost:3306/transactions_db")
                 .username("root")

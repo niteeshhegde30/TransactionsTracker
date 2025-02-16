@@ -10,34 +10,10 @@ import java.sql.*;
 @ComponentScan
 public class MyApplication {
 
-    private static final String JDBC_CONNECTION_URL = "jdbc:mysql://localhost:3306/transactions_db";
-    private static final String MYSQL_USER_NAME = "root";
-    private static final String MYSQL_PASSWORD = "mysql";
-
+    // TODO : my-batis-config.xml is not being used as of now - decide whether to keep it
     public static void main(String[] args) {
+        // TODO : replace print with log statements
         System.out.println("Started the application");
-
-        try{
-            Connection connection = DriverManager.getConnection(JDBC_CONNECTION_URL,MYSQL_USER_NAME, MYSQL_PASSWORD);
-            Statement statement;
-            statement = connection.createStatement();
-            ResultSet resultSet;
-            resultSet = statement.executeQuery(
-                    "select * from transaction");
-            double amount;
-            Date date;
-            while (resultSet.next()) {
-                amount = resultSet.getDouble("amount");
-                date = resultSet.getDate("date");
-                System.out.println("Amount : " + amount
-                        + " Date : " + date);
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (Exception e){
-            System.out.println(e);
-        }
         SpringApplication.run(MyApplication.class, args);
     }
 

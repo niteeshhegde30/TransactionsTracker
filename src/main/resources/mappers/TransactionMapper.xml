@@ -4,15 +4,6 @@
 
 <mapper namespace="org.transactionsTracker.mappers.TransactionMapper">
 
-    <select id="findById" parameterType="int" resultType="org.transactionsTracker.model.Transaction">
-        SELECT * FROM transaction
-        WHERE id = #{id}
-    </select>
-
-    <select id="getAllTransactions" parameterType="int" resultType="org.transactionsTracker.model.Transaction">
-        SELECT * FROM transaction
-    </select>
-
     <select id="findTransactionForFilter" parameterType="org.transactionsTracker.model.TransactionsFilter"
             resultType="org.transactionsTracker.model.Transaction">
         SELECT * FROM transaction
@@ -39,31 +30,5 @@
             (#{transaction.amount}, #{transaction.comment}, #{transaction.date})
         </foreach>
     </insert>
-
-
-    <!--    &lt;!&ndash; Select user by ID &ndash;&gt;-->
-    <!--    <select id="findById" parameterType="long" resultType="com.example.demo.model.User">-->
-    <!--        SELECT * FROM users WHERE id = #{id}-->
-    <!--    </select>-->
-
-    <!--    &lt;!&ndash; Select all users &ndash;&gt;-->
-    <!--    <select id="findAll" resultType="com.example.demo.model.User">-->
-    <!--        SELECT * FROM users-->
-    <!--    </select>-->
-
-    <!--    &lt;!&ndash; Insert user &ndash;&gt;-->
-    <!--    <insert id="insert" parameterType="com.example.demo.model.User" useGeneratedKeys="true" keyProperty="id">-->
-    <!--        INSERT INTO users (name, email) VALUES (#{name}, #{email})-->
-    <!--    </insert>-->
-
-    <!--    &lt;!&ndash; Update user &ndash;&gt;-->
-    <!--    <update id="update" parameterType="com.example.demo.model.User">-->
-    <!--        UPDATE users SET name=#{name}, email=#{email} WHERE id=#{id}-->
-    <!--    </update>-->
-
-    <!--    &lt;!&ndash; Delete user &ndash;&gt;-->
-    <!--    <delete id="delete" parameterType="long">-->
-    <!--        DELETE FROM users WHERE id=#{id}-->
-    <!--    </delete>-->
 
 </mapper>

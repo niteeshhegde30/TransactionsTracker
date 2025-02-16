@@ -5,6 +5,7 @@ import org.transactionsTracker.model.TransactionsFilter;
 
 import java.util.List;
 
+// TODO: write documentation
 public interface TransactionService {
     List<Transaction> addTransactions(List<Transaction> transactions);
 
