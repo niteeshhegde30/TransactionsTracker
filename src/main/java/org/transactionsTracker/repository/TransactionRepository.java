@@ -24,7 +24,12 @@ public class TransactionRepository {
     }
 
     public List<Transaction> findTransactionForFilter(TransactionsFilter filter){
+        return sqlSessionTemplate.selectList("org.transactionsTracker.mappers.TransactionMapper.findTransactionForFilter", filter);
+    }
 
-        return sqlSessionTemplate.selectList("org.transactionsTracker.mappers.TransactionMapper.getAllTransactions");
+    public List<Transaction> insertTransactions(List<Transaction> transactions){
+        sqlSessionTemplate.insert("org.transactionsTracker.mappers.TransactionMapper.insertTransactions", transactions);
+//        sqlSessionTemplate.commit();
+        return transactions;
     }
 }

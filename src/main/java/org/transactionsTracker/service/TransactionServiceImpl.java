@@ -35,20 +35,18 @@ public class TransactionServiceImpl implements TransactionService{
     @Override
     @PostMapping("/addTransactions")
     public List<Transaction> addTransactions(@RequestBody List<Transaction> transactions) {
-        Transaction transaction = new Transaction(10.0, new Date());
-        return List.of(transaction);
+        return transactionRepository.insertTransactions(transactions);
     }
 
     @Override
     @GetMapping("/readTransactions")
-    public List<Transaction> readTransactions(TransactionsFilter filter) {
-        Transaction transaction = new Transaction(20.0, new Date());
-        return transactionRepository.getAllTransactions();
-//        return List.of(transaction);
+    public List<Transaction> readTransactions(@ModelAttribute TransactionsFilter filter) {
+        return transactionRepository.findTransactionForFilter(filter);
     }
 
     @Override
     public List<Transaction> updateTransactions(List<Transaction> transactions) {
+
         return null;
     }
 

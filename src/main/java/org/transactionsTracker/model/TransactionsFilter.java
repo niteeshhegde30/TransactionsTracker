@@ -1,13 +1,27 @@
 package org.transactionsTracker.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class TransactionsFilter {
     private Double amount;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private String comment;
+
     TransactionsFilter(){}
+
+    public TransactionsFilter(Double amount, Date startDate, Date endDate, String comment) {
+        this.amount = amount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.comment = comment;
+    }
 
     public Double getAmount() {
         return amount;
