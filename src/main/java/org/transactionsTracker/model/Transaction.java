@@ -7,14 +7,8 @@ public class Transaction {
     private double amount;
     private Date date;
     private String comment;
-    
-    public Transaction() {
-    }
-
-    public Transaction(double amount, Date date){
-        this.amount = amount;
-        this.date = date;
-    }
+    private String category;
+    private String subCategory;
 
     public double getAmount() {
         return amount;
@@ -46,5 +40,21 @@ public class Transaction {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 }

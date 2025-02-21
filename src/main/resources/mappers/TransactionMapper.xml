@@ -20,14 +20,21 @@
             <if test="endDate != null">
                 AND date &lt;= CONCAT(#{endDate}, ' 23:59:59')
             </if>
+            <if test="category != null">
+                AND category = #{category}
+            </if>
+            <if test="subCategory != null">
+                AND sub_category = #{subCategory}
+            </if>
         </where>
     </select>
 
     <insert id="insertTransactions" parameterType="list" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO transaction (amount, comment, date)
+        INSERT INTO transaction (amount, category, sub_category, date, comment)
         VALUES
         <foreach collection="list" item="transaction" separator=",">
-            (#{transaction.amount}, #{transaction.comment}, #{transaction.date})
+            (#{transaction.amount}, #{transaction.category}, #{transaction.subCategory}, #{transaction.date},
+            #{transaction.comment})
         </foreach>
     </insert>
 

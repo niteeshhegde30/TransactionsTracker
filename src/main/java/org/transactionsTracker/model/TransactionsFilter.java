@@ -13,14 +13,23 @@ public class TransactionsFilter {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     private String comment;
+    private String category;
+    private String subCategory;
 
-    TransactionsFilter(){}
+    public String getSubCategory() {
+        return subCategory;
+    }
 
-    public TransactionsFilter(Double amount, Date startDate, Date endDate, String comment) {
-        this.amount = amount;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.comment = comment;
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Double getAmount() {
